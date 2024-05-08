@@ -1,0 +1,10 @@
+[Unit]
+Description=Subtensor Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/admin/subtensor
+ExecStart=/home/admin/subtensor/scripts/run/subtensor.sh -e docker --network mainnet --node-type lite
+
+[Install]
+WantedBy=multi-user.target
