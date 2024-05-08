@@ -2,6 +2,8 @@ FROM ghcr.io/nestybox/ubuntu-jammy-systemd:latest
 
 ENV PATH="/home/admin/.local/bin:${PATH}"
 
+ENV WANDB_API_KEY=${WANDB_API_KEY:-12345Qwq@}
+
 # Install Docker
 RUN apt-get update && apt-get install -y curl wget git cmake build-essential nano python3 python3-pip python-is-python3 npm at\
     && npm install pm2 -g \
@@ -54,7 +56,7 @@ RUN mkdir -p /home/admin/compute-subnet && \
 
 # Configure wandb API key
 RUN cp /home/admin/compute-subnet/.env.example /home/admin/compute-subnet/.env && \
-    sed -i "s/WANDB_API_KEY=\"your_api_key\"/WANDB_API_KEY=\"12345Qwq@\"/" /home/admin/compute-subnet/.env
+    sed -i "s/WANDB_API_KEY=\"your_api_key\"/WANDB_API_KEY=\"$WANDB_API_KEY@\"/" /home/admin/compute-subnet/.env
 
 # Set systemd as entrypoint.
 ENTRYPOINT [ "/sbin/init", "--log-level=err" ]
