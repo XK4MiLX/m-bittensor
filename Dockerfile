@@ -44,9 +44,9 @@ RUN wget https://hashcat.net/files/hashcat-6.2.6.tar.gz && \
     make install && \
     cd ..
 
-RUN mkdir -p /home/admin/Compute-Subnet && \
-    git clone https://github.com/neuralinternet/Compute-Subnet.git /home/admin/Compute-Subnet/ && \
-    cd /home/admin/Compute-Subnet/ && \
+RUN mkdir -p /home/admin/compute-subnet && \
+    git clone https://github.com/neuralinternet/Compute-Subnet.git /home/admin/compute-subnet/ && \
+    cd /home/admin/compute-subnet/ && \
     pip install --upgrade pip setuptools && \
     python -m pip install -r requirements.txt && \
     python -m pip install --no-deps -r requirements-compute.txt && \
@@ -55,8 +55,8 @@ RUN mkdir -p /home/admin/Compute-Subnet && \
 
 # Configure wandb API key
 RUN echo "Configuring wandb API key" && \
-    cp /home/admin/Compute-Subnet/.env.example /home/admin/Compute-Subnet/.env && \
-    sed -i "s/WANDB_API_KEY=\"your_api_key\"/WANDB_API_KEY=\"12345Qwq@\"/" /home/admin/Compute-Subnet/.env
+    cp /home/admin/compute-subnet/.env.example /home/admin/compute-subnet/.env && \
+    sed -i "s/WANDB_API_KEY=\"your_api_key\"/WANDB_API_KEY=\"12345Qwq@\"/" /home/admin/compute-subnet/.env
 
 # Set systemd as entrypoint.
 ENTRYPOINT [ "/sbin/init", "--log-level=err" ]
