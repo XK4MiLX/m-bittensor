@@ -1,0 +1,36 @@
+#!/bin/bash
+  echo """
+
+██████╗░██╗████████╗████████╗███████╗███╗░░██╗░██████╗░█████╗░██████╗░
+██╔══██╗██║╚══██╔══╝╚══██╔══╝██╔════╝████╗░██║██╔════╝██╔══██╗██╔══██╗
+██████╦╝██║░░░██║░░░░░░██║░░░█████╗░░██╔██╗██║╚█████╗░██║░░██║██████╔╝
+██╔══██╗██║░░░██║░░░░░░██║░░░██╔══╝░░██║╚████║░╚═══██╗██║░░██║██╔══██╗
+██████╦╝██║░░░██║░░░░░░██║░░░███████╗██║░╚███║██████╔╝╚█████╔╝██║░░██║
+╚═════╝░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚═╝░░╚══╝╚═════╝░░╚════╝░╚═╝░░╚═╝
+
+                                                    - Mining a new element.
+    """
+echo ""
+echo "- 1. Create a wallet pair"
+echo "    $ btcli w new_coldkey (for holding funds)"
+echo "    $ btcli w new_hotkey (for running miners)"
+echo ""
+echo "- 2. To run a miner on the Compute Subnetwork (SN27) you must first create a wallet pair and register to SN27. Visit https://docs.neuralinternet.ai/products/subnet-27-compute/bittensor-compute-subnet-miner-setup for Instructions "
+echo "    cd compute-subnet"
+echo "    pm2 start ./neurons/miner.py --name MINER --interpreter python3 -- --netuid 27 --subtensor.network local --wallet.name COLDKEYNAME --wallet.hotkey HOTKEYNAME --axon.port XXXX --logging.debug --miner.blacklist.force_validator_permit --auto_update yes "
+echo ""
+echo "Extras:"
+echo ""
+echo "- Check your tao balance: "
+echo "    $ btcli wallet overview"
+echo ""
+echo "- Stake to your miners:"
+echo "    $ btcli stake add"
+echo "    $ btcli stake remove"
+echo ""
+echo "- Create/list/register wallets"
+echo "    $ btcli w new_coldkey"
+echo "    $ btcli w new_hotkey"
+echo "    $ btcli s list or $ btcli w list"
+echo "    $ btcli s register --subtensor.network finney --netuid 27"
+echo ""
