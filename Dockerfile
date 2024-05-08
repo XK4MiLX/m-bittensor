@@ -28,7 +28,6 @@ RUN chmod +x /etc/update-motd.d/10-custom-message
 # Enable and start the subtensor service
 RUN systemctl enable subtensor.service
 
-
 RUN mkdir -p /home/admin/.bittensor/bittensor && \
     git clone https://github.com/opentensor/bittensor.git /home/admin/.bittensor/bittensor/ 2> /dev/null || (cd /home/admin/.bittensor/bittensor/ ; git fetch origin master ; git checkout master) && \
     python3 -m pip install -e /home/admin/.bittensor/bittensor/  && \
@@ -54,8 +53,7 @@ RUN mkdir -p /home/admin/compute-subnet && \
     apt-get install -y ocl-icd-libopencl1 pocl-opencl-icd
 
 # Configure wandb API key
-RUN echo "Configuring wandb API key" && \
-    cp /home/admin/compute-subnet/.env.example /home/admin/compute-subnet/.env && \
+RUN cp /home/admin/compute-subnet/.env.example /home/admin/compute-subnet/.env && \
     sed -i "s/WANDB_API_KEY=\"your_api_key\"/WANDB_API_KEY=\"12345Qwq@\"/" /home/admin/compute-subnet/.env
 
 # Set systemd as entrypoint.
